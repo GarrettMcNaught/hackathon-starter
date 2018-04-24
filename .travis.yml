@@ -2,14 +2,15 @@
 language: node_js
 node_js:
   - "7"
-  - "node"
-services: mongodb
-cache:
-  directories:
-    - "node_modules"
-sudo: false
+services:
+  - mongodb
 install:
   - npm install
+deploy:
+  provider: script
+  skip_cleanup: true
+  script: /bin/sh deploy.sh
+  on:
+    branch: master
 script:
-  - npm run lint
   - npm test
